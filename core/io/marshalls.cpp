@@ -556,6 +556,7 @@ Error decode_variant(Variant &r_variant, const uint8_t *p_buffer, int p_len, int
 
 			ERR_FAIL_COND_V(len < 4, ERR_INVALID_DATA);
 			uint32_t count = decode_uint32(buf);
+			int32_t signed_count = decode_uint32(buf); // just to see how the signed version looks like
 			buf += 4;
 			len -= 4;
 			ERR_FAIL_COND_V((int)count > len, ERR_INVALID_DATA);
@@ -654,6 +655,7 @@ Error decode_variant(Variant &r_variant, const uint8_t *p_buffer, int p_len, int
 
 				ERR_FAIL_COND_V(len < 4, ERR_INVALID_DATA);
 				uint32_t strlen = decode_uint32(buf);
+				int32_t signed_strlen = decode_uint32(buf); // just to see how the signed version looks like
 
 				buf += 4;
 				len -= 4;
