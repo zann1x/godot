@@ -84,6 +84,15 @@ static Error _decode_string(const uint8_t *&buf, int &len, int *r_len, String &r
 	return OK;
 }
 
+/*
+Parameters:
+- r_variant = the variant where to store the decode object
+- p_buffer = the buffer to read from
+- p_len = the input buffer length
+- r_len = bytes consumed by decode_variant (used for offsetting next call if multiple variant are stored in the same buffer)
+- p_allow_objects = if object decoding is allowed (Objects can contain code, and object decoding should be off by default when reading network data,
+	in fact, there is a fix for that in the latest release, see https://github.com/godotengine/godot/issues/27395)
+*/
 Error decode_variant(Variant &r_variant, const uint8_t *p_buffer, int p_len, int *r_len, bool p_allow_objects) {
 
 	const uint8_t *buf = p_buffer;
